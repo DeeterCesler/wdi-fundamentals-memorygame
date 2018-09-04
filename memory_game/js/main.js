@@ -1,6 +1,5 @@
 console.log("Up and running!");
 
-
 var cards = [
 	{
 		rank: 'queen',
@@ -23,28 +22,43 @@ var cards = [
 		cardImage: "images/king-of-diamonds.png"
 	}
 ];
+
 var cardsInPlay = [];
 
 function checkForMatch() {
-	/*I decided to use my own code here since I had already written 
-	a check for match function within flipCard. So I just moved it here*/
-	if (cardsInPlay.length === 2){
+	if (cardsInPlay.length === 2) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
-			alert("You found a match!");
+		alert("You found a match!");
+		} else {
+		alert("Sorry, try again.");
 		}
-		else alert("Sorry, try again.");
+	//document.getElementById(".reset-button").style.visibility = "visible";
 	}
 }
 
-function flipCard(cardId) {
-	console.log("User flipped " + cards[cardId].rank)
+function flipCard() {
+	var cardId = this.getAttribute('data-id');
+	console.log("User flipped " + cards[cardId].rank);
+	this.setAttribute('src', cards[cardId].cardImage);
 	cardsInPlay.push(cards[cardId].rank);
-	console.log(cards[cardId].cardImage);
-	console.log(cards[cardId].suit);
+	//console.log(cards[cardId].suit);
 	checkForMatch();
 };
 
-flipCard(0);
-flipCard(2);
+
+function createBoard(){
+	for(i = 0; i < cards.length; i++){
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', "images/back.png");
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+}
+
+
+
+
+createBoard();
 
 //

@@ -98,3 +98,15 @@ font-size: 0;
 	color: #F15B31;
 	font-weight: 700;
 }
+
+.reset {
+	height: 50px;
+	background-color: blue;
+}
+
+#reset-button {
+	visibility: hidden;
+	text-transform: uppercase;
+	font-family: "Raleway", sans-serif;
+	color: #0D2C40;
+}
